@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--<meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+    <!--jQuery-->
+    <script src="js/lib/jquery-2.1.4.js"></script>
+
+    <!--jQuery Mobile-->
+    <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+
+    <!--jQuery Validate-->
+    <script src="js/lib/jquery.validate.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/facade.js"></script>
+    <script src="js/userDAL.js"></script>
+    <script src="js/postingDAL.js"></script>
+    <script src="js/pictureDAL.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/database.js"></script>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW_BikqDjBY6dYXAP6ET3PH0XeftvCsNo"></script>
+    <script src="js/googleMap.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+
+    <!--jQuery Mobile Style-->
+    <link rel="stylesheet" type="text/css" href="css/lib/jquery.mobile-1.4.5.css"/>
+
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="icon" href="../icon.png">
+
+    <title>HomeSweetHome</title>
+</head>
+<body>
+
+<!-- SIGN IN -->
+<div id="signInPage" data-role="page">
+    <!--<header data-role="header" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e">-->
+        <!--&lt;!&ndash;<h2 style="color: white">Sign In</h2>&ndash;&gt;-->
+
+    <!--</header>-->
+    <section data-role="content">
+        <div id="login" name="login">
+            <img src="img/icon.png">
+            <form id="frmSignIn" name="frmSignIn">
+                <input type="text" name="txtEmail" id="txtEmail"
+                       placeholder="username@server.com" autofocus>
+                <input type="password" name="txtPassword"
+                       id="txtPassword" placeholder="password">
+                <button type="button" id="btnSignIn" name="btnSignIn" data-theme="b">
+                    Sign In
+                </button>
+            </form>
+            <p>Don't have an account?</p>
+            <button type="button" id="btnShowSignUpPage" class="w3-button" name="btnShowSignUpPage">
+                Sign Up
+            </button>
+        </div>
+    </section>
+    <!--<footer data-role="footer" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e">-->
+        <!--<p style="color: white">&copy; 2017 JJGR</p>-->
+    <!--</footer>-->
+</div>
+<!--</div>-->
+<!-- SIGN UP -->
+<div id="signUpPage" data-role="page">
+    <header data-role="header" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e">
+        <h2 style="color: white">Sign Up</h2>
+    </header>
+    <section data-role="content">
+        <form id="frmSignUp" name="frmSignUp">
+            <label for="txtNewEmail">Email Address</label>
+            <input type="text" name="txtNewEmail" id="txtNewEmail" autofocus>
+            <label for="txtNewPassword">Password</label>
+            <input type="password" name="txtNewPassword" id="txtNewPassword">
+            <label for="txtPasswordConfirm">Confirm Password</label>
+            <input type="password" name="txtPasswordConfirm" id="txtPasswordConfirm">
+            <label for="txtFirstName">First Name</label>
+            <input type="text" name="txtFirstName" id="txtFirstName">
+            <label for="txtLastName">Last Name</label>
+            <input type="text" name="txtLastName" id="txtLastName">
+            <label for="txtPhone">Phone</label>
+            <input type="text" name="txtPhone" id="txtPhone">
+            <button type="button" id="btnSignUp" name="btnSignUp" data-theme="b">
+                Sign Up
+            </button>
+        </form>
+        <!--</div>-->
+    </section>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e">
+        <p style="color: white">&copy; 2017 JJGR</p>
+    </footer>
+</div>
+<!-- PROFILE -->
+<div id="profilePage" data-role="page">
+    <header data-role="header" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e">
+        <h2 style="color: white">Your Profile</h2>
+        <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+    </header>
+    <section data-role="content">
+        <div>
+            <form id="frmUpdateUser">
+                <label for="txtProfilePassword">Password</label>
+                <input type="password" name="txtProfilePassword" id="txtProfilePassword" autofocus>
+                <label for="txtPasswordConfirm">Confirm Password</label>
+                <input type="password" name="txtProfilePasswordConfirm" id="txtProfilePasswordConfirm">
+                <label for="txtProfileFirstName">First Name</label>
+                <input type="text" name="txtProfileFirstName" id="txtProfileFirstName">
+                <label for="txtProfileLastName">Last Name</label>
+                <input type="text" name="txtProfileLastName" id="txtProfileLastName">
+                <label for="txtProfilePhone">Phone</label>
+                <input type="text" name="txtProfilePhone" id="txtProfilePhone">
+                <button type="button" id="btnUpdateUser" name="btnAdd">Update</button>
+            </form>
+        </div>
+    </section>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e" >
+        <p style="color: white">&copy; 2017 JJGR</p>
+    </footer>
+</div>
+
+<!-- POSTINGS -->
+<div data-role="page" id="postingsPage">
+    <header data-role="header" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e">
+        <h2 style="color: white">Postings</h2>
+        <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+    </header>
+    <section data-role="content">
+        <ul data-role="listview" data-icon="" id="postingList" name="postingList" class="ui-listview-inset" data-theme="a">
+            <!--POSTING LOADS HERE-->
+        </ul>
+        <button data-role="button" data-icon="plus" data-iconpos="notext" id="btnAddPosting"
+                name="btnAddPosting">Menu</button>
+    </section>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e">
+        <p style="color: white">&copy; 2017 JJGR</p>
+    </footer>
+</div>
+<!-- ADD POSTING -->
+<div id="addPostingPage" data-role="page">
+    <header data-role="header" data-position="fixed" data-tap-toggle="false"  style="background-color: #0cc18e">
+        <h2 style="color: white">Postings</h2>
+        <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+    </header>
+    <section data-role="content">
+        <form id="frmAddPosting">
+            <label for="txtTitle">Title:</label>
+            <input type="text" id="txtTitle" name="txtTitle" data-clear-btn="true" autofocus>
+            <label for="txtDescription">Description:</label>
+            <textarea id="txtDescription" name="txtDescription"></textarea>
+            <label for="txtAddress">Address:</label>
+            <input type="text" id="txtAddress" name="txtAddress" data-clear-btn="true">
+            <label for="txtCity">City:</label>
+            <input type="text" id="txtCity" name="txtCity" data-clear-btn="true">
+            <label for="txtPostalCode">Postal Code:</label>
+            <input type="text" id="txtPostalCode" name="txtPostalCode" data-clear-btn="true">
+            <div id="divLocation" role="main" class="ui-content">
+                <!--MAP LOADS HERE-->
+            </div>
+            <label for="txtPrice">Price:</label>
+            <input type="number" id="txtPrice" name="txtPrice" min="0.00" step="0.01" data-clear-btn="true">
+            <div data-role="collapsible">
+                <h3>Picture 1</h3>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <div class="ui-bar ui-bar-a">
+                            <img src="img/noImg.jpg" alt="Picture" id="imgPic1" width="50%" height="50%">
+                        </div>
+                    </div>
+                    <div class="ui-block-b">
+                        <div class="ui-bar ui-bar-a">
+                            <label for="txtPic1Title">Title:</label>
+                            <input type="text" id="txtPic1Title" name="txtPic1Title" data-clear-btn="true">
+                            <label for="txtPic1Desc">Description:</label>
+                            <textarea id="txtPic1Desc" name="txtPic1Desc"></textarea>
+                            <div data-role="controlgroup" data-type="horizontal">
+                                <a href="#" data-icon="camera" data-iconpos="notext" id="btnTakePic1"
+                                   name="btnTakePic1">Camera</a>
+                                <a href="#" data-icon="search" data-iconpos="notext" id="btnFindPic1"
+                                   name="btnFindPic1">Gallery</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-role="collapsible">
+                <h3>Picture 2</h3>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <div class="ui-bar ui-bar-a">
+                            <img src="img/noImg.jpg" alt="Picture" id="imgPic2" width="50%" height="50%">
+                        </div>
+                    </div>
+                    <div class="ui-block-b">
+                        <div class="ui-bar ui-bar-a">
+                            <label for="txtPic2Title">Title:</label>
+                            <input type="text" id="txtPic2Title" name="txtPic2Title" data-clear-btn="true">
+                            <label for="txtPic2Desc">Description:</label>
+                            <textarea id="txtPic2Desc" name="txtPic2Desc"></textarea>
+                            <div data-role="controlgroup" data-type="horizontal">
+                                <a href="#" data-icon="camera" data-iconpos="notext" id="btnTakePic2"
+                                   name="btnTakePic2">Camera</a>
+                                <a href="#" data-icon="search" data-iconpos="notext" id="btnFindPic2"
+                                   name="btnFindPic2">Gallery</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-role="collapsible">
+                <h3>Picture 3</h3>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <div class="ui-bar ui-bar-a">
+                            <img src="img/noImg.jpg" alt="Picture" id="imgPic3" width="50%" height="50%">
+                        </div>
+                    </div>
+                    <div class="ui-block-b">
+                        <div class="ui-bar ui-bar-a">
+                            <label for="txtPic3Title">Title:</label>
+                            <input type="text" id="txtPic3Title" name="txtPic3Title" data-clear-btn="true">
+                            <label for="txtPic2Desc">Description:</label>
+                            <textarea id="txtPic3Desc" name="txtPic3Desc"></textarea>
+                            <div data-role="controlgroup" data-type="horizontal">
+                                <a href="#" data-icon="camera" data-iconpos="notext" id="btnTakePic3"
+                                   name="btnTakePic3">Camera</a>
+                                <a href="#" data-icon="search" data-iconpos="notext" id="btnFindPic3"
+                                   name="btnFindPic3">Gallery</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-role="controlgroup" data-type="horizontal">
+                <button type="button" id="btnAdd" name="btnAdd" data-theme="b">Add</button>
+            </div>
+        </form>
+    </section>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e">
+        <p style="color: white">&copy; 2017 JJGR</p>
+    </footer>
+</div>
+
+<!-- YOUR POSTINGS -->
+<div data-role="page" id="yourPostingsPage">
+    <header data-role="header" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e">
+        <h2 style="color: white">Your Postings</h2>
+        <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+    </header>
+    <section data-role="content">
+        <ul data-role="listview" data-icon="" id="youPostingList" class="ui-listview-inset">
+            <!--POSTING LOADS HERE-->
+        </ul>
+        <a href="#addPostingPage" data-role="button" data-icon="plus" data-iconpos="notext" id="btnAddYourPosting"
+           name="btnAddYourPosting">Menu</a>
+    </section>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e" >
+        <p style="color: white">&copy; 2017 JJGR</p>
+    </footer>
+</div>
+
+<!-- POSTING DETAILS -->
+<div data-role="page" id="postingDetailsPage">
+    <header data-role="header" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e">
+        <h2 style="color: white">Posting Details</h2>
+        <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+    </header>
+    <section data-role="content">
+        <h1 id="h1Title"></h1>
+        <div data-role="controlgroup" data-type="horizontal">
+            <a href="" type="button" id="h3Email" name="h3Email" data-role="button" data-icon="mail"
+               data-iconpos="left"></a>
+            <a href="" type="button" id="h3Phone" name="h3Phone" data-role="button" data-icon="phone"
+               data-iconpos="left"></a>
+        </div>
+        <div id="divPictures"></div>
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th>Date</th>
+                        <td id="tdDate"></td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td id="tdPrice"></td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td id="tdAddress"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="ui-block-b">
+                <div id="divPostingLocation" role="main" class="ui-content">
+                    <!--MAP LOADS HERE-->
+                </div>
+            </div>
+        </div>
+        <p id="pDescription"></p>
+    </section>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e">
+        <p style="color: white">&copy; 2017 JJGR</p>
+    </footer>
+</div>
+<!-- ABOUT -->
+<div id="aboutPage" data-role="page">
+    <header data-role="header" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e">
+        <h2 style="color: white">About</h2>
+        <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+    </header>
+    <section data-role="content">
+        <ul id="Contacts" data-role="listview" data-inset="true">
+            <li>
+                <p>Name: Jankiben Joshi</p>
+                <p>Role: Project Manager, Programmer</p>
+                <p>Email: jjoshi6191@conestogac.on.ca</p>
+            </li>
+            <li>
+                <p>Name: Gonzalo Ramos Zuniga</p>
+                <p>Role: Programmer, Tester</p>
+                <p>Email: gramoszuniga5711@conestogac.on.ca</p>
+            </li>
+        </ul>
+    </section>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false" style="background-color: #0cc18e" >
+        <p style="color: white">&copy; 2017 JJGR</p>
+    </footer>
+</div>
+<!-- NAVIGATION PANEL -->
+<div data-role="panel" data-position="left" data-position-fixed="false" data-theme="b"  data-display="overlay" id="nav-panel">
+    <ul data-role="listview">
+        <li><img src="img/icon.png" alt="HomeSweetHome" style="padding-bottom: 15px"></li>
+        <li><a class="ui-btn ui-icon-home ui-btn-icon-left" href="#profilePage">Profile</a></li>
+        <li><a class="ui-btn ui-icon-grid ui-btn-icon-left" href="#postingsPage">Postings</a></li>
+        <li><a class="ui-btn ui-icon-grid ui-btn-icon-left" href="#yourPostingsPage">Your Postings</a></li>
+        <li><a class="ui-btn ui-icon-info ui-btn-icon-left" href="#aboutPage">About</a></li>
+    </ul>
+</div>
+</body>
+</html>
